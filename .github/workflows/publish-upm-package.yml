@@ -30,7 +30,7 @@ jobs:
         
         $(echo "${body}" | sed 's/^#/\#\#/')
         EOS
-        cat Assets/package.json | jq -Mr '. | .version = "'"${version##v}"'"' > Assets/package.json
+        cat Assets/package.json | jq -Mr '. | .version = "'"${version##v}"'"' | tee Assets/package.json > /dev/null
         git config --global user.email "github-actions@example.com"
         git config --global user.name "GitHub Actions"
         git add .
