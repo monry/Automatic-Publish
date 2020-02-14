@@ -17,7 +17,14 @@ jobs:
     - name: Show Release Body
       run: |
         version=${{ github.event.release.tag_name }}
-        cat Assets/package.json
-        /bin/echo ${{ github.event.release.tag_name }} | sed -e 's/^v\(.*\)/\'$'\n## [\\1] - '"`date "+%Y-%m-%d"`"'/' | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
-        /bin/echo "${{ github.event.release.name }}\n\n${{ github.event.release.body }}" | sed 's/^#/##/g' | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
+        summary=${{ github.event.release.name }}
+        body=${{ github.event.release.body }}
+        cat << EOS | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
+
+## [${version##v}] - $(date "+%Y-%m-%d")
+
+${summary}
+
+$(echo ${body} | sed 's/^#/##/')
+EOS
         cat Assets/CHANGELOG.md
