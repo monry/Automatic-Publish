@@ -5,16 +5,19 @@ on:
     types: [published]
 
 jobs:
-  build:
+  bump-up-version:
 
     runs-on: ubuntu-latest
+
+    env:
+      REPOSITORY: https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
     steps:
     - uses: actions/checkout@v2
     - name: Install required commands
       run: |
         sudo apt-get update && sudo apt-get install jq
-    - name: Show Release Body
+    - name: Replace package.json and CHANGELOG.md
       run: |
         version="${{ github.event.release.tag_name }}"
         summary="${{ github.event.release.name }}"
@@ -27,4 +30,8 @@ jobs:
         
         $(echo "${body}" | sed 's/^#/\#\#/')
         EOS
-        cat Assets/CHANGELOG.md
+        cat Assets/package.json | jq -Mr '. | .version = "'"${version##v}"'"' > Assets/package.json
+        git config --global user.email "github-actions@example.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git commit -m ":up: Bump up version: ${version}" && git push ${REPOSITORY} HEAD:${{ github.event.release.target_commitish }} || true
