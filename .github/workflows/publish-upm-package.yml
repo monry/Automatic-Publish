@@ -25,6 +25,6 @@ jobs:
         
         ${summary}
         
-        $(echo ${body} | sed 's/^#/\#\#/')
+        $(echo "${body}" | sed 's/^#/\#\#/')
         EOS
         cat Assets/CHANGELOG.md
