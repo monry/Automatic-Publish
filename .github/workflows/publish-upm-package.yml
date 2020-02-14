@@ -16,9 +16,9 @@ jobs:
         sudo apt-get update && sudo apt-get install jq
     - name: Show Release Body
       run: |
-        version=${{ github.event.release.tag_name }}
-        summary=${{ github.event.release.name }}
-        body=${{ github.event.release.body }}
+        version="${{ github.event.release.tag_name }}"
+        summary="${{ github.event.release.name }}"
+        body="${{ github.event.release.body }}"
         cat << EOS | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
         
         ## [${version##v}] - $(date "+%Y-%m-%d")
