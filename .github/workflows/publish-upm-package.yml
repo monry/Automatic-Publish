@@ -11,5 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Show variables
-      run: "echo \"${GITHUB_SHA}: ${GITHUB_REF}\""
+    - name: Install required commands
+      run: sudo apt-get update && sudo apt-get install curl
+    - name: Show Releases
+      run: curl https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${GITHUB_REF##refs/}
