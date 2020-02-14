@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Show variables
-      run: "echo \"${GITHUB_SHA}: ${GITHUB_REF}""
+      run: "echo \"${GITHUB_SHA}: ${GITHUB_REF}\""
