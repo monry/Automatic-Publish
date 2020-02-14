@@ -20,11 +20,11 @@ jobs:
         summary=${{ github.event.release.name }}
         body=${{ github.event.release.body }}
         cat << EOS | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
-
-\#\# [${version##v}] - $(date "+%Y-%m-%d")
-
-${summary}
-
-$(echo ${body} | sed 's/^#/\#\#/')
-EOS
+        
+        ## [${version##v}] - $(date "+%Y-%m-%d")
+        
+        ${summary}
+        
+        $(echo ${body} | sed 's/^#/\#\#/')
+        EOS
         cat Assets/CHANGELOG.md
