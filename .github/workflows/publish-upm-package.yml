@@ -11,6 +11,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install required commands
+      run: |
+        sudo apt-get update && sudo apt-get install jq
     - name: Show Release Body
       run: |
-        echo "${{ github.event.release.name }}: ${{ github.event.release.body }}"
+        version=${{ github.event.release.tag_name }}
+        cat Assets/package.json
+        /bin/echo ${{ github.event.release.tag_name }} | sed -e 's/^v\(.*\)/\'$'\n## [\\1] - '"`date "+%Y-%m-%d"`"'/' | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
+        /bin/echo "${{ github.event.release.name }}\n\n${{ github.event.release.body }}" | sed 's/^#/##/g' | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
+        cat Assets/CHANGELOG.md
