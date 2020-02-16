@@ -1,20 +1,17 @@
 name: Publish UPM Package
 
 on:
-  push:
-    tags:
-      - v*
+  release:
+    types: [published]
 
 jobs:
-  build:
+  bump-up-version:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - uses: monry/actions-upm-publish@develop
+      with:
+        npm_auth_token: ${{ secrets.NPM_AUTH_TOKEN }}
+        
