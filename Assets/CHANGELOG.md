@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1-preview.19] - 2020-02-16
+
+Make branch names correctly
+
+### Fixes
+
+* push 先のブランチ名が空になってしまっていたので、修正する
+
 ## [0.0.1-preview.14] - 2020-02-16
 
 Force change commit hash after push difference
