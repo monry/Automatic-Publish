@@ -1,20 +1,20 @@
 {
-    "name": "dev.monry.automatic-publish",
-    "displayName": "Automatic Publish",
-    "version": "0.0.1",
-    "unity": "2019.2",
-    "description": "Automatic publish UPM package when tag pushed",
-    "author": {
-      "name": "Tetsuya Mori",
-      "url": "https://me.monry.dev/",
-      "email": "monry84@gmail.com"
-    },
-    "license": "MIT",
-    "keywords": [],
-    "category": "",
-    "dependencies": {},
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/monry/Automatic-Publish"
-    }
+  "name": "dev.monry.automatic-publish",
+  "displayName": "Automatic Publish",
+  "version": "0.0.1-preview.12",
+  "unity": "2019.2",
+  "description": "Automatic publish UPM package when tag pushed",
+  "author": {
+    "name": "Tetsuya Mori",
+    "url": "https://me.monry.dev/",
+    "email": "monry84@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "category": "",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monry/Automatic-Publish"
   }
+}
