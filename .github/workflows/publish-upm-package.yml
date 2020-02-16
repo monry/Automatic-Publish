@@ -33,10 +33,11 @@ jobs:
         cat Assets/package.json | jq -Mr '. | .version = "'"${VERSION##v}"'"' | tee Assets/package.json > /dev/null
     - name: Commit and push to repository
       run: |
-        branch="temporary-$(date '+%Y%m%d%H%M%S')"
         git config --global user.email "github-actions@example.com"
         git config --global user.name "GitHub Actions"
-        git switch -c ${branch}
+        git switch -c "temporary-$(date '+%Y%m%d%H%M%S')"
         git add .
         git commit -m ":up: Bump up version: ${VERSION}" && git push ${REPOSITORY} HEAD:${{ github.event.release.target_commitish }} || true
-        echo '{}' | jq -Mr '. | ."target_commitish" = "'$(git rev-parse HEAD)'"' | curl -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d @- https://api.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}
+        git tag -d ${VERSION}
+        git tag ${VERSION}
+        git push --tags --force
