@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0] - 2020-02-16
+
+Summary of Release
+
+### Features
+
+* Body of Release
+
 ## [0.0.1-preview.19] - 2020-02-16
 
 Make branch names correctly
