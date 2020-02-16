@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1-preview.18] - 2020-02-16
+
+Fix git error
+
+### Fixes
+
+* Alpine Linux にインストール可能な git はバージョンが古いっぽく、 `git switch` がエラーで転けた
+
 ## [0.0.1-preview.14] - 2020-02-16
 
 Force change commit hash after push difference

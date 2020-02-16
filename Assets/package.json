@@ -1,7 +1,7 @@
 {
   "name": "dev.monry.automatic-publish",
   "displayName": "Automatic Publish",
-  "version": "0.0.1-preview.14",
+  "version": "0.0.1-preview.18",
   "unity": "2019.2",
   "description": "Automatic publish UPM package when tag pushed",
   "author": {
