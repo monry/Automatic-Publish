@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1] - 2020-02-16
+
+Summary of Release
+
+### Features
+
+* Some message
+
 ## [1.0.0] - 2020-02-16
 
 Summary of Release
