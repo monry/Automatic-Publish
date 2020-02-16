@@ -11,11 +11,9 @@ jobs:
 
     if: secrets.NPM_AUTH_TOKEN != ''
 
-    env:
-      REPOSITORY: https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-      VERSION: ${{ github.event.release.tag_name }}
-      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
     steps:
     - uses: actions/checkout@v2
     - uses: monry/actions-upm-publish@develop
+      with:
+        npm_auth_token: ${{ secrets.NPM_AUTH_TOKEN }}
+        
