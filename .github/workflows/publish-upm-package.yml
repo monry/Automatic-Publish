@@ -9,35 +9,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    if: secrets.NPM_AUTH_TOKEN != ''
+
     env:
       REPOSITORY: https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
       VERSION: ${{ github.event.release.tag_name }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install required commands
-      run: |
-        sudo apt-get update && sudo apt-get install jq
-    - name: Replace package.json and CHANGELOG.md
-      run: |
-        summary='${{ github.event.release.name }}'
-        body='${{ github.event.release.body }}'
-        cat << EOS | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
-        
-        ## [${VERSION##v}] - $(date "+%Y-%m-%d")
-        
-        ${summary}
-        
-        $(echo "${body}" | sed 's/^#/\#\#/')
-        EOS
-        cat Assets/package.json | jq -Mr '. | .version = "'"${VERSION##v}"'"' | tee Assets/package.json > /dev/null
-    - name: Commit and push to repository
-      run: |
-        git config --global user.email "github-actions@example.com"
-        git config --global user.name "GitHub Actions"
-        git switch -c "temporary-$(date '+%Y%m%d%H%M%S')"
-        git add .
-        git commit -m ":up: Bump up version: ${VERSION}" && git push ${REPOSITORY} HEAD:${{ github.event.release.target_commitish }} || true
-        git tag -d ${VERSION}
-        git tag ${VERSION}
-        git push --tags --force
+    - uses: monry/actions-upm-publish@develop
