@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1-preview.14] - 2020-02-16
+
+Force change commit hash after push difference
+
+### Changes
+
+* `package.json` や `CHANGELOG.md` 変更の push 後に強制的に tag を付け替えて再 push する。
+
 ## [0.0.1-preview.13] - 2020-02-16
 
 Split steps
