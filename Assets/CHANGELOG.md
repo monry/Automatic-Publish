@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1-preview.17] - 2020-02-16
+
+Remove errors in public actions
+
+### Fixes
+
+* Public Actions 側のエラーを取り除く
+
 ## [0.0.1-preview.14] - 2020-02-16
 
 Force change commit hash after push difference
