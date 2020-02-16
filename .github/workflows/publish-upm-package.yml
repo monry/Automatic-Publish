@@ -20,11 +20,12 @@ jobs:
     - name: Replace package.json and CHANGELOG.md
       run: |
         version="${{ github.event.release.tag_name }}"
+        branch="temporary-$(date '+%y%m%d%H%M%S')"
         summary="${{ github.event.release.name }}"
         body="${{ github.event.release.body }}"
         cat << EOS | sed -i '1r /dev/stdin' Assets/CHANGELOG.md
         
-        ## [${version##v}] - $(date "+%Y-%m-%d")
+        ## [${version##v}] - $(date "+%y-%m-%d")
         
         ${summary}
         
@@ -33,6 +34,7 @@ jobs:
         cat Assets/package.json | jq -Mr '. | .version = "'"${version##v}"'"' | tee Assets/package.json > /dev/null
         git config --global user.email "github-actions@example.com"
         git config --global user.name "GitHub Actions"
+        git switch -c ${branch}
         git add .
         git commit -m ":up: Bump up version: ${version}" && git push ${REPOSITORY} HEAD:${{ github.event.release.target_commitish }} || true
         echo '{}' | jq -Mr '. | ."target_commitish" = "'$(git rev-parse HEAD)'"' | curl -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d @- https://api.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}
