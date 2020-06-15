@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3] - 2020-06-15
+
+Use variables
+
+### Features
+
+- Use variables: `npm_registry_url` and `package_directory_path`
+
 ## [1.0.1] - 2020-02-16
 
 Summary of Release
