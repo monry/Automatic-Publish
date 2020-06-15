@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4] - 2020-06-15
+
+Use .npmrc
+
+### Features
+
+- Retrieve registry URL from `.npmrc`
+
 ## [1.0.3] - 2020-06-15
 
 Use variables
