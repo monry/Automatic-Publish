@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5] - 2020-06-15
+
+Use variables
+
+### Features
+
+- Use variables
+
 ## [1.0.4] - 2020-06-15
 
 Use .npmrc
